@@ -43,7 +43,7 @@ public class PlayerScoreSystem : MonoBehaviour
         isRestaringTime = true;
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         if (isRestaringTime)
         {
@@ -72,13 +72,11 @@ public class PlayerScoreSystem : MonoBehaviour
             disc.GetComponent<Renderer>().enabled = true;
             
             if(discRigiBody.velocity.x > 0) { 
-                discRigiBody.velocity = new Vector2(0,0);
-                discRigiBody.AddForce(-disc.direction);
+                discRigiBody.velocity = -disc.direction;
             }
             else
             {
-                discRigiBody.velocity = new Vector2(0, 0);
-                discRigiBody.AddForce(disc.direction);
+                discRigiBody.velocity = disc.direction;
             }
 
             for (int i = 0; i < players.Length; i++)
